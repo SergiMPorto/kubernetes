@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  serviceName: mysql
+  replicas: {{ .Values.database.replicaCount }}
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: {{ .Values.database.image }}
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: root-password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+        resources:
+          limits:
+            cpu: {{ .Values.database.resources.limits.cpu }}
+            memory: {{ .Values.database.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.database.resources.requests.cpu }}
+            memory: {{ .Values.database.resources.requests.memory }}
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: {{ .Values.database.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.database.livenessProbe.periodSeconds }}
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: {{ .Values.database.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.database.readinessProbe.periodSeconds }}
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-storage
+    spec:
+      accessModes: 
+      - {{ .Values.database.persistence.accessModes | join ", " }}
+      resources:
+        requests:
+          storage: {{ .Values.database.persistence.size }}
+      storageClassName: {{ .Values.database.persistence.storageClass }}

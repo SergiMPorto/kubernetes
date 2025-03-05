@@ -1,0 +1,6 @@
+apiVersion: v2
+name: sergichart
+description:  Un chart de helm para desplegar Wordpress con una base de datos
+type: application
+Version: 1.0.0
+appVersion: "1.0.0"
