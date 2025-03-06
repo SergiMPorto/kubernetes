@@ -31,6 +31,5 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: password
-# livenessProbe:
 # readinessProbe:
 # resources:

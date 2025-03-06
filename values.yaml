@@ -28,7 +28,6 @@
    enabled: true
    type: mysql
    replicaCount: 1
-   image: mysql:5.7
    persistence:
      enabled: true
      storageClass: "standard"
@@ -52,11 +51,7 @@
        port: 3306
      initialDelaySeconds: 5
      periodSeconds: 5
-   auth:
-     username: "keepcoding"
-     password: "123456"
-     rootPassword: "123456" 
- 
+   
  service:
    port: 80
  

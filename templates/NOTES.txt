@@ -1,1 +1,2 @@
-¡Felicidades! 🎉 Tu aplicación Flask se ha implementado con éxito utilizando Helm.
+¡Felicidades!  Tu aplicación  se ha instalado con éxito utilizando Helm.
+ACUERDATE DE ESTABLECER TU CONTRASE�A Y NOMBRE PARA PODER ENTRAR. 
