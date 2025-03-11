@@ -31,5 +31,22 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: password
-# readinessProbe:
-# resources:
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: {{ .Values.wordpress.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.wordpress.readinessProbe.periodSeconds }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: {{ .Values.wordpress.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.wordpress.livenessProbe.periodSeconds }}
+          resources:
+            limits:
+              cpu: {{ .Values.wordpress.resources.limits.cpu }}
+              memory: {{ .Values.wordpress.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.wordpress.resources.requests.cpu }}
+              memory: {{ .Values.wordpress.resources.requests.memory }}

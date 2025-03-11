@@ -9,7 +9,7 @@
        cpu: 200m
        memory: 600Mi
    service:
-     type: NodePort
+     type: ClusterIP
      port: 80
    livenessProbe:
      httpGet:
@@ -56,7 +56,7 @@
    port: 80
  
  ingress:
-   enabled: false
+   enabled: enable
    hostname: wordpress.local
  
  autoscaling:
