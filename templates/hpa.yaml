@@ -1,4 +1,4 @@
-{{- if .Values.autoscaling.enabled }}
+{{- if .Values.autoscaling.enabled }}  #verificasi el autoscaling esta disponible en en value.yaml en caso positivo se crea el recurso.
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:

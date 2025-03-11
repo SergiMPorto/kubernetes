@@ -28,12 +28,14 @@
    enabled: true
    type: mysql
    replicaCount: 1
+   #persistencia
    persistence:
      enabled: true
      storageClass: "standard"
      accessModes:
        - ReadWriteOnce
      size: 10Gi
+     #resources add
    resources:
      limits:
        cpu: 1000m
@@ -41,6 +43,7 @@
      requests:
        cpu: 500m
        memory: 800Mi
+     #test health
    livenessProbe:
      tcpSocket:
        port: 3306
@@ -55,9 +58,12 @@
  service:
    port: 80
  
+ #ingress
  ingress:
    enabled: enable
    hostname: wordpress.local
+   
+#autoscaling   
  
  autoscaling:
    enabled: true
