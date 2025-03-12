@@ -29,12 +29,10 @@ sergichart/
 ## Pasos Realizados
 
 1. **Inicialización del Clúster**  
-   Inicié Minikube con tres nodos, aunque durante el desarrollo comprobé que con dos nodos era suficiente.  
+   Inicié Minikube  
    ![Minikube](https://github.com/KeepCodingCloudDevops11/Sergio-Kubernetes/blob/master/imagenes/CreaciponMinikube.png?raw=true)
 
-3. **Preparación del Entorno**  
-   - Creé una carpeta para almacenar el proyecto.
-   - Definí un *namespace* llamado `kuberkid` donde se recrearán todos los recursos.
+
 
 4. **Gestión de Secretos**  
    - Generé los *secrets* necesarios para el despliegue de WordPress y MySQL.
